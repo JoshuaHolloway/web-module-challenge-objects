@@ -15,8 +15,13 @@ The function should:
   Example createMenuItem('tacos', 8, 'Lunch') should return {name: 'tacos', price: 8, category: 'Lunch'}
 */
 
-function createMenuItem(/*Your code here*/){
-    /*Your code here*/
+function createMenuItem(name, price, category){
+
+  //// standard object-literal syntax
+  // return {name: name, price: price, category: category}; 
+  
+  // ES6 shortand
+  return {name, price, category}; 
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -28,8 +33,6 @@ Test your createMenuItems function by doing the following:
   
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
-
-
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to the 
@@ -50,8 +53,18 @@ export const burger = {
   category: "Lunch", 
   /*Your code here*/
 }
+burger.discount = function(person_type) {
+  // Calculate price after sale
+  // 25% off for teachers and students
+  // 10% off for everyone else
 
-
+  // Input: A string {'teacher', 'student', 'public'}
+  // Output: A number.
+  if (person_type === 'teacher' || person_type === 'student')  
+    return .75 * this.price; // (x - 0.25 * x) == x*(1 - 0.25) == 0.75*x
+  else                                                         
+    return .9  * this.price; // (x - 0.10 * x) == x*(1 - 0.10) == 0.9*x
+};
 
 ///////////////Reviews (MVP)///////////////////
 const reviews = [
@@ -69,8 +82,8 @@ const reviews = [
 Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
-
-
+console.log(reviews[5].feedback);
+// console.log(reviews[5]['feedback']);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
