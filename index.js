@@ -173,9 +173,13 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
-const getReviewByRating = (reviews, rating) => reviews.map(review => rating <= review.rating && review.rating <= rating + 0.9);
+const getReviewByRating = (reviews, rating) => reviews.filter(review => rating <= review.rating && review.rating <= rating + 0.9);
+console.log('--------Stretch-Task-1-----------');
+console.log(getReviewByRating(reviews, 4));
+console.log('---------------------------------');  
 
-  
+
+
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
   1. Receive the array that holds all the reviews
