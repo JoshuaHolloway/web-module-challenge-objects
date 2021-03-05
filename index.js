@@ -222,12 +222,26 @@ Use the carMaker function below to do the following:
   It would return 110 because it was created with 10 as the odometer and we added 100 to it with the drive method 
 */
 
-
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(odometer_val) {
+    // Input:
+    //    (1) a single odometer argument (a number) 
+    // Output: 
+    //    An object.
+    const new_obj = {
+      odometer: odometer_val,
+      drive: function (distance) {
+        return (this.odometer += distance);
+      }
+    };
+    return new_obj;
 }
-
+console.log('--------Stretch-Task-3-----------');
+const car = carMaker(10);
+console.log(car);
+const total_distance_driven = car.drive(100);
+console.log(car);
+console.log('total distance driven: ', total_distance_driven);
+console.log('---------------------------------');
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
