@@ -85,14 +85,19 @@ Using the reviews array above:
 console.log(reviews[5].feedback);
 // console.log(reviews[5]['feedback']);
 
-
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Using the reviews array above do the following: (no function needed) 
   1. Following the same format (name, rating, feedback), add a new fictitious review object to the reviews array
   2. log the whole array to the console, make sure the new review is inside of it   
 */
-
-
+reviews.push({
+  name: 'josh',
+  rating: 1e6,
+  feedback: 'awesome sauce'
+});
+console.log('--------Task-4-----------');
+console.log(reviews);
+console.log('-------------------------');
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
