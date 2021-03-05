@@ -15,8 +15,13 @@ The function should:
   Example createMenuItem('tacos', 8, 'Lunch') should return {name: 'tacos', price: 8, category: 'Lunch'}
 */
 
-function createMenuItem(/*Your code here*/){
-    /*Your code here*/
+function createMenuItem(name, price, category){
+
+  //// standard object-literal syntax
+  // return {name: name, price: price, category: category}; 
+  
+  // ES6 shortand
+  return {name, price, category}; 
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -28,8 +33,6 @@ Test your createMenuItems function by doing the following:
   
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
-
-
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to the 
@@ -50,8 +53,18 @@ export const burger = {
   category: "Lunch", 
   /*Your code here*/
 }
+burger.discount = function(person_type) {
+  // Calculate price after sale
+  // 25% off for teachers and students
+  // 10% off for everyone else
 
-
+  // Input: A string {'teacher', 'student', 'public'}
+  // Output: A number.
+  if (person_type === 'teacher' || person_type === 'student')  
+    return .75 * this.price; // (x - 0.25 * x) == x*(1 - 0.25) == 0.75*x
+  else                                                         
+    return .9  * this.price; // (x - 0.10 * x) == x*(1 - 0.10) == 0.9*x
+};
 
 ///////////////Reviews (MVP)///////////////////
 const reviews = [
@@ -69,17 +82,22 @@ const reviews = [
 Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
-
-
-
+console.log(reviews[5].feedback);
+// console.log(reviews[5]['feedback']);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Using the reviews array above do the following: (no function needed) 
   1. Following the same format (name, rating, feedback), add a new fictitious review object to the reviews array
   2. log the whole array to the console, make sure the new review is inside of it   
 */
-
-
+reviews.push({
+  name: 'josh',
+  rating: 1e6,
+  feedback: 'awesome sauce'
+});
+console.log('--------Task-4-----------');
+console.log(reviews);
+console.log('-------------------------');
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
@@ -87,6 +105,23 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
+// Function to get review corresponding to element from array of objects that has name property set to value of person_name
+const get_review_from_specific_person = (person_name) => {
+  for (let i = 0; i < reviews.length; ++i) {
+    if (reviews[i].name === person_name)
+      return reviews[i];
+  }
+  return null;
+};
+const review = get_review_from_specific_person('Reyna');
+console.log('Reyna\'s review via function with classical loop:');
+console.log(review);
+
+// Alternative way to get a specific review:
+// -Use filter method
+const review_alt_meth = reviews.filter(review => review.name === 'Reyna')[0]; // assume only one occurence => grab zero'th indexed element since array is returned with single element (since we are assuming only one occurence of reviewname === 'Reyna')
+console.log('Reyna\'s review via .filter() method:');
+console.log(review_alt_meth);
 
 
 
@@ -101,13 +136,9 @@ Use the getReviewByIndex function below to do the following:
   For example: getReviewByIndex(reviews,0) would return: "Daniela gave the restaurant a 5 star review, and their feedback was: Beautiful atmosphere and wonderful vegan options!"
 */
 
-
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
-}
-
-
-  
+const getReviewByIndex = (arr, idx) => {
+  return `${arr[idx].name} gave the restaurant a ${arr[idx].rating} star review, and their feedback was: ${arr[idx].feedback}`
+};
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Write a function to get information about the most recent (last) review called `getLastReview`
@@ -120,12 +151,11 @@ Use the getLastReview function below to do the following:
   For example: getLastReview(reviews) would return: "Reyna gave the restaurant a 3.5 star review, and their feedback was: this place is chill with really cool people, great for getting work done on weekdays".
 */
 
-
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
-} 
-
-
+const getLastReview = (arr, idx) => {
+  const N = arr.length;
+  const review = arr[N-1];
+  return `${review.name} gave the restaurant a ${review.rating} star review, and their feedback was: ${review.feedback}`
+};
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
@@ -143,11 +173,13 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
-  }
+const getReviewByRating = (reviews, rating) => reviews.filter(review => rating <= review.rating && review.rating <= rating + 0.9);
+console.log('--------Stretch-Task-1-----------');
+console.log(getReviewByRating(reviews, 4));
+console.log('---------------------------------');  
 
-  
+
+
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
   1. Receive the array that holds all the reviews
@@ -161,10 +193,17 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
-  }
-  
+const getLongReviews = (reviews, num_words) => {
+  const filtered = reviews.filter((review) => {
+    const review_length = review.feedback.split(' ').length;
+    return review_length > num_words;
+  });
+  return filtered;
+};
+console.log('--------Stretch-Task-2-----------');
+console.log(getLongReviews(reviews, 15));
+console.log('---------------------------------');
+
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
 This stretch goal does not use the reviews data!  You create your own object in this stretch goal.
@@ -183,12 +222,26 @@ Use the carMaker function below to do the following:
   It would return 110 because it was created with 10 as the odometer and we added 100 to it with the drive method 
 */
 
-
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(odometer_val) {
+    // Input:
+    //    (1) a single odometer argument (a number) 
+    // Output: 
+    //    An object.
+    const new_obj = {
+      odometer: odometer_val,
+      drive: function (distance) {
+        return (this.odometer += distance);
+      }
+    };
+    return new_obj;
 }
-
+console.log('--------Stretch-Task-3-----------');
+const car = carMaker(10);
+console.log(car);
+const total_distance_driven = car.drive(100);
+console.log(car);
+console.log('total distance driven: ', total_distance_driven);
+console.log('---------------------------------');
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
