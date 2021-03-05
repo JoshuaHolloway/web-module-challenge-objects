@@ -193,10 +193,17 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
-  }
-  
+const getLongReviews = (reviews, num_words) => {
+  const filtered = reviews.filter((review) => {
+    const review_length = review.feedback.split(' ').length;
+    return review_length > num_words;
+  });
+  return filtered;
+};
+console.log('--------Stretch-Task-2-----------');
+console.log(getLongReviews(reviews, 15));
+console.log('---------------------------------');
+
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
 This stretch goal does not use the reviews data!  You create your own object in this stretch goal.
