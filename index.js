@@ -105,6 +105,23 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
+// Function to get review corresponding to element from array of objects that has name property set to value of person_name
+const get_review_from_specific_person = (person_name) => {
+  for (let i = 0; i < reviews.length; ++i) {
+    if (reviews[i].name === person_name)
+      return reviews[i];
+  }
+  return null;
+};
+const review = get_review_from_specific_person('Reyna');
+console.log('Reyna\'s review via function with classical loop:');
+console.log(review);
+
+// Alternative way to get a specific review:
+// -Use filter method
+const review_alt_meth = reviews.filter(review => review.name === 'Reyna')[0]; // assume only one occurence => grab zero'th indexed element since array is returned with single element (since we are assuming only one occurence of reviewname === 'Reyna')
+console.log('Reyna\'s review via .filter() method:');
+console.log(review_alt_meth);
 
 
 
@@ -119,13 +136,7 @@ Use the getReviewByIndex function below to do the following:
   For example: getReviewByIndex(reviews,0) would return: "Daniela gave the restaurant a 5 star review, and their feedback was: Beautiful atmosphere and wonderful vegan options!"
 */
 
-
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
-}
-
-
-  
+const getReviewByIndex = (arr, idx) => `${arr[idx].name} gave the restaurant a ${arr[idx].rating} star review, and their feedback was: ${arr[idx].feedback}`;
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Write a function to get information about the most recent (last) review called `getLastReview`
