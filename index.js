@@ -173,9 +173,7 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
-  }
+const getReviewByRating = (reviews, rating) => reviews.map(review => rating <= review.rating && review.rating <= rating + 0.9);
 
   
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
